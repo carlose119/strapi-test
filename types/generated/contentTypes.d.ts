@@ -689,10 +689,12 @@ export interface ApiContactoContacto extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Nombre: Attribute.String;
+    name: Attribute.String;
     email: Attribute.Email;
-    Mensaje: Attribute.Text;
-    email_enviado: Attribute.Boolean & Attribute.DefaultTo<false>;
+    message: Attribute.Text;
+    email_sent: Attribute.Boolean & Attribute.DefaultTo<false>;
+    origin: Attribute.String;
+    phone: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -12,18 +12,24 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Nombre": {
+    "name": {
       "type": "string"
     },
     "email": {
       "type": "email"
     },
-    "Mensaje": {
+    "message": {
       "type": "text"
     },
-    "email_enviado": {
+    "email_sent": {
       "type": "boolean",
       "default": false
+    },
+    "origin": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
     }
   }
 }

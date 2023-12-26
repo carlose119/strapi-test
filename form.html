@@ -1,16 +1,21 @@
 <div class="rendered-form">
   <form id="contactos" method="post">
+    <input type="hidden" class="form-control" name="origin" value="Contacto" id="origin">
     <div class="formbuilder-text form-group field-username">
-      <label for="nombre" class="formbuilder-text-label">nombre</label>
-      <input type="text" class="form-control" name="Nombre" access="false" id="nombre">
+      <label for="nombre" class="formbuilder-text-label">Nombre</label>
+      <input type="text" class="form-control" name="name" access="false" id="nombre">
     </div>
     <div class="formbuilder-text form-group field-email">
-      <label for="email" class="formbuilder-text-label">email</label>
+      <label for="email" class="formbuilder-text-label">Email</label>
       <input type="email" class="form-control" name="email" access="false" id="email">
     </div>
+    <div class="formbuilder-text form-group field-email">
+      <label for="telefono" class="formbuilder-text-label">Telefono</label>
+      <input type="number" class="form-control" name="phone" access="false" id="telefono">
+    </div>
     <div class="formbuilder-text form-group field-password">
-      <label for="mensaje" class="formbuilder-text-label">mensaje</label>
-      <input type="text" class="form-control" name="Mensaje" access="false" id="mensaje">
+      <label for="mensaje" class="formbuilder-text-label">Mensaje</label>
+      <input type="text" class="form-control" name="message" access="false" id="mensaje">
     </div>
 
     <div class="formbuilder-button form-group field-submit">
