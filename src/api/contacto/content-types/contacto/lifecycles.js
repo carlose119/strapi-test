@@ -25,6 +25,10 @@ module.exports = {
 
     strapi.log.info("send-email");
 
+    const SMTP_ADMIN = process.env.SMTP_ADMIN;
+    const PUBLIC_URL = process.env.PUBLIC_URL;
+
+    //Start Sent Email Client
     const emailTemplate = {
       subject: 'Contacto Evanhub',
       text: `Hola <%= result.name %>, tu mensaje es: <%= result.message %>`,
@@ -48,7 +52,7 @@ module.exports = {
                                  <tr>
                                     <td style="width: 50%;">
                                        <div style="margin: 0 auto">
-                                          <img src="https://evanhub-cms.somosforma.dev/uploads/logo_mail_86d38232b3.png"
+                                          <img src="<%= result.PUBLIC_URL %>/uploads/logo_mail_86d38232b3.png"
                                              alt="Logo evanhub" style="height:auto;width:120px;">
                                        </div>
                                     </td>
@@ -127,7 +131,7 @@ module.exports = {
                                     <td style="text-align: center;">
                                        <div
                                           style="border-top: 1px solid rgba(46, 60, 113, 0.15); width: 100%;padding: 24px 0;">
-                                          <img src="https://evanhub-cms.somosforma.dev/uploads/icon_evanhub_mail_8c0060693d.png"
+                                          <img src="<%= result.PUBLIC_URL %>/uploads/icon_evanhub_mail_8c0060693d.png"
                                              height="80" width="80" alt="Icon Evanhub">
                                        </div>
                                        <div style="border-top: 1px solid rgba(46, 60, 113, 0.15); padding: 24px 0;">
@@ -139,14 +143,14 @@ module.exports = {
                                              <a style="font-size: 14px; color:#4B4C4E;font-weight: 400;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;text-decoration: none;margin-right: 48px;"
                                                 href="mailto:correo@gmail.com" target="_blank">
                                              <img style="vertical-align: middle;margin-top: -1px;"
-                                                src="https://evanhub-cms.somosforma.dev/uploads/icon_mail_3d4b441ea0.png"
+                                                src="<%= result.PUBLIC_URL %>/uploads/icon_mail_3d4b441ea0.png"
                                                 width="30" height="30" />
                                              correo@gmail.com
                                              </a>
                                              <a style="font-size: 14px; color:#4B4C4E;font-weight: 400;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;text-decoration: none;"
                                                 href="tel:+562000000000" target="_blank">
                                              <img style="vertical-align: middle;margin-top: -1px;"
-                                                src="https://evanhub-cms.somosforma.dev/uploads/icon_phone_30694fd70b.png"
+                                                src="<%= result.PUBLIC_URL %>/uploads/icon_phone_30694fd70b.png"
                                                 width="30" height="30" />
                                              +562 000 000 00
                                              </a>
@@ -172,9 +176,12 @@ module.exports = {
       </html>`,
     };
 
+    result.PUBLIC_URL = PUBLIC_URL;
+    //strapi.log.info(JSON.stringify(result));
     const email = await strapi.plugins['email'].services.email.sendTemplatedEmail(
       {
         to: result.email,
+        bcc: SMTP_ADMIN,
         // from: is not specified, the defaultFrom is used.
       },
         emailTemplate,
@@ -191,6 +198,21 @@ module.exports = {
         },
       });
     }
+    //END Sent Email Client
+
+    //Start Sent Email ADMIN
+    /* const SMTP_ADMIN = process.env.SMTP_ADMIN;
+    const email_admin = await strapi.plugins['email'].services.email.sendTemplatedEmail(
+      {
+        to: SMTP_ADMIN,
+        // from: is not specified, the defaultFrom is used.
+      },
+        emailTemplate,
+      {
+        result: result,
+      }
+    ); */
+    //END Sent Email ADMIN
 
   },
 }

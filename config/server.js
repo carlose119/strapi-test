@@ -7,5 +7,6 @@ module.exports = ({ env }) => ({
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
-  url: env('WEBSITE', 'http://localhost'), // THIS ONE
+  //url: env('PUBLIC_URL', 'http://localhost'), // THIS ONE
+  url: 'http://localhost:1337', // THIS ONE
 });

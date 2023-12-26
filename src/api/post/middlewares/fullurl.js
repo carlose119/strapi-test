@@ -11,7 +11,7 @@ module.exports = (config, { strapi }) => {
 
     // Check if response type is HTML
     const contentType = ctx.response.get('url');
-    strapi.log.info(JSON.stringify(ctx.body));
+    //strapi.log.info(JSON.stringify(ctx.body));
     if (contentType && contentType.includes('text/html')) {
       const host = ctx.request.origin;
       const body = ctx.body;

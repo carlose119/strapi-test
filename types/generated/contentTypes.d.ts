@@ -362,6 +362,68 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiContactoContacto extends Schema.CollectionType {
+  collectionName: 'contactos';
+  info: {
+    singularName: 'contacto';
+    pluralName: 'contactos';
+    displayName: 'Contacto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    email: Attribute.Email;
+    message: Attribute.Text;
+    email_sent: Attribute.Boolean & Attribute.DefaultTo<false>;
+    origin: Attribute.String;
+    phone: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contacto.contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contacto.contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    content: Attribute.Text;
+    slug: Attribute.UID<'api::post.post', 'Title'> & Attribute.Required;
+    File: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -677,68 +739,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiContactoContacto extends Schema.CollectionType {
-  collectionName: 'contactos';
-  info: {
-    singularName: 'contacto';
-    pluralName: 'contactos';
-    displayName: 'Contacto';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    email: Attribute.Email;
-    message: Attribute.Text;
-    email_sent: Attribute.Boolean & Attribute.DefaultTo<false>;
-    origin: Attribute.String;
-    phone: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contacto.contacto',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contacto.contacto',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPostPost extends Schema.CollectionType {
-  collectionName: 'posts';
-  info: {
-    singularName: 'post';
-    pluralName: 'posts';
-    displayName: 'Post';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    content: Attribute.Text;
-    slug: Attribute.UID<'api::post.post', 'Title'> & Attribute.Required;
-    File: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -749,14 +749,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::contacto.contacto': ApiContactoContacto;
+      'api::post.post': ApiPostPost;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::contacto.contacto': ApiContactoContacto;
-      'api::post.post': ApiPostPost;
     }
   }
 }
