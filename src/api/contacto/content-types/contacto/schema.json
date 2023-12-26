@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contacto",
     "pluralName": "contactos",
-    "displayName": "Contacto"
+    "displayName": "Contacto",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,10 @@
     },
     "Mensaje": {
       "type": "text"
+    },
+    "email_enviado": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

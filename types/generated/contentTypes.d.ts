@@ -683,6 +683,7 @@ export interface ApiContactoContacto extends Schema.CollectionType {
     singularName: 'contacto';
     pluralName: 'contactos';
     displayName: 'Contacto';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -691,6 +692,7 @@ export interface ApiContactoContacto extends Schema.CollectionType {
     Nombre: Attribute.String;
     email: Attribute.Email;
     Mensaje: Attribute.Text;
+    email_enviado: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

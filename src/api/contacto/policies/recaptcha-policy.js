@@ -8,6 +8,14 @@ module.exports = async (policyContext, config, { strapi }) => {
   // Add your own logic here.
   strapi.log.info("recaptcha-policy");
 
+  if(policyContext.request.body["data"] === 'undefined') {
+    const details =  {
+      policy: "data-undefined",
+      code: "REQUIRED",
+    };
+    throw new PolicyError("data undefined", details);
+  }
+
   // Get request body data
   const requestData = policyContext.request.body["data"];
   const recaptchaResponse = policyContext.request.body["data"]['g-recaptcha-response'];

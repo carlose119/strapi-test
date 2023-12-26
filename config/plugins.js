@@ -18,8 +18,8 @@ module.exports = ({ env }) => ({
         // ... any custom nodemailer options
       },
       settings: {
-        defaultFrom: 'hello@example.com',
-        defaultReplyTo: 'hello@example.com',
+        defaultFrom: env('SMTP_FROM', 'hello@example.com'),
+        defaultReplyTo: env('SMTP_REPLYTO', 'hello@example.com'),
       },
     },
   },
