@@ -19,33 +19,16 @@
     </div>
 
     <div class="formbuilder-button form-group field-submit">
-      <!--  <button type="submit" class="btn-default btn" name="submit" value="submit" access="false"
-        id="submit">submit</button> -->
       <button type="button" class="g-recaptcha btn-default btn" data-sitekey="6LcqxzcpAAAAAMCkL5Z_-rK1jqZsbwHp5tPOvapD"
         data-callback='onSubmit' data-action='submit'>Submit</button>
     </div>
   </form>
 </div>
-<!-- <script>
-  document.getElementById('contactos').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Array.from(formData.entries()).reduce((memo, pair) => ({
-      ...memo,
-      [pair[0]]: pair[1],
-    }), {});
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'auth/local/register', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(data));
-  });
-</script>
- -->
+
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
   function onSubmit(token) {
-    //document.getElementById("contactos").submit();
 
     const endpoint = 'http://localhost:1337/api/contactos';
     const formElement = document.getElementById("contactos");
